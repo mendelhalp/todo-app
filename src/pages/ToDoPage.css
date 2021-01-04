@@ -1,0 +1,28 @@
+
+
+.p-todo h1{
+    font-weight: bold;
+    text-align: center;
+}
+
+.p-todo .center{
+    display: flex;
+    justify-content: center;
+}
+
+.p-todo .between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 380px;
+}
+
+.p-todo .list{
+    border: 1px solid black;
+    width: 350px;
+    min-height: 50px;
+}
+
+.p-todo span{
+    font-size: 16px;
+}
