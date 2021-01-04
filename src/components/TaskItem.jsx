@@ -1,4 +1,5 @@
-import { Row } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Modal, Row } from 'react-bootstrap';
 import './TaskItem.css';
 
 //this component render a ToDo item
@@ -8,9 +9,12 @@ import './TaskItem.css';
 //onSelect - function - function that change the isChecked value in the tasks array and rerender the item
 //handleDeleteItem - function - function that delete this item from the tasks array
 //index - number - the index of the item in the tasks array
+//states:
+//showAlert - boolean - is the alert Modal need to be shown or not
 
 const TaskItem = (props) => {
     const { text, isChecked, onSelect, handleDeleteItem, index } = props;
+    const [showAlert, setShowAlert] = useState(false);
 
 
     return (
@@ -20,7 +24,17 @@ const TaskItem = (props) => {
                     <input id={'item' + index} type="checkbox" checked={isChecked} onChange={onSelect} className="mr-2" />
                     <label className={isChecked ? "checked" : ""} htmlFor={'item' + index}>{text}</label>
                 </div>
-                <span onClick={() => handleDeleteItem(index)}>X</span>
+                <span onClick={() => isChecked ? handleDeleteItem(index) : setShowAlert(true)}>X</span>
+                <Modal show={showAlert} onHide={() => setShowAlert(false)} backdrop="static" keyboard={false}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Active Task!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>You are trying to delete an active task</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowAlert(false)}>Cancel</Button>
+                        <Button variant="primary" onClick={() => {handleDeleteItem(index); setShowAlert(false)}}>Delete anyway</Button>
+                    </Modal.Footer>
+                </Modal>
             </Row>
         </div>
     )
