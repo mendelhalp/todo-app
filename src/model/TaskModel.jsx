@@ -1,12 +1,14 @@
-import React from 'react';
 
+class TaskModel {
 
-class TaskModel extends React.Component {
-
-    constructor(text, isChecked){
-        super();
-        this.text = text;
-        this.isChecked = false;
+    constructor(text, isChecked) {
+        if (isChecked) {
+            this.text = text;
+            this.isChecked = isChecked;
+        } else {
+            this.text = text;
+            this.isChecked = false;
+        }
     }
 }
 
