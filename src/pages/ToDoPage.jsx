@@ -40,7 +40,7 @@ const ToDoPage = () => {
     //itemIndex - number - location in the array (e.g 0)
     const deleteItem = (itemIndex) => {
         const newTasks = [...tasks];
-        newTasks.splice(itemIndex,1);
+        newTasks.splice(itemIndex, 1);
         // tasks.filter(item => item !== itemIndex);
         localStorage.tasks = JSON.stringify(newTasks);
         setTasks(newTasks);
@@ -67,7 +67,6 @@ const ToDoPage = () => {
         return left;
     }
 
-
     return (
         <div className="p-todo">
             <Container>
@@ -85,14 +84,16 @@ const ToDoPage = () => {
                         </div>
                     </Col>
                     <Col className="center">
-                        <div className="between">
-                            <span>{itemsLeft()} items left</span>
-                            <ToggleButtonGroup name="select-filter">
-                                <Button className="m-1" variant="light" active={(filterType === 'All') ? true : false}>All</Button>
-                                <Button className="m-1" variant="light" active={(filterType === 'Active') ? true : false}>Active</Button>
-                                <Button className="m-1" variant="light" active={(filterType === 'Complited') ? true : false}>Complited</Button>
-                            </ToggleButtonGroup>
-                        </div>
+                        {tasks.length > 0 &&
+                            <div className="between">
+                                <span>{itemsLeft()} items left</span>
+                                <ToggleButtonGroup name="select-filter">
+                                    <Button className="m-1" variant="light" active={(filterType === 'All') ? true : false}>All</Button>
+                                    <Button className="m-1" variant="light" active={(filterType === 'Active') ? true : false}>Active</Button>
+                                    <Button className="m-1" variant="light" active={(filterType === 'Complited') ? true : false}>Complited</Button>
+                                </ToggleButtonGroup>
+                            </div>
+                        }
                     </Col>
                 </Row>
             </Container>
