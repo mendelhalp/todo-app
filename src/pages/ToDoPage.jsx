@@ -3,6 +3,7 @@ import { Button, ButtonGroup, Col, Container, Row, ToggleButtonGroup } from 'rea
 import './ToDoPage.css';
 import TaskModel from "../model/TaskModel";
 import isEnterPressed from "../utils/utils";
+import TaskItem from '../components/TaskItem';
 
 const ToDoPage = () => {
     const [tasks, setTasks] = useState(localStorage.tasks ? JSON.parse(localStorage.tasks) : []);
@@ -19,13 +20,17 @@ const ToDoPage = () => {
         }
     }
 
-    const taskList = () => {
-        if (tasks) {
-            tasks.map(task => {
-                // <TaskItem text={task.text} isChecked={task.isChecked}/>
-            })
-        }
+    // const setChecked = () => {
+
+    // }
+
+    let taskList;
+    if (tasks) {
+        taskList = tasks.map((task, index) =>
+            <TaskItem key={index} text={task.text} isChecked={task.isChecked} />
+        )
     }
+
 
     return (
         <div className="p-todo">
@@ -39,8 +44,8 @@ const ToDoPage = () => {
                             onChange={e => setTaskText(e.target.value)} onKeyPress={addTask} />
                     </Col>
                     <Col className="center">
-                        <div className="list">
-                            {/* {taskList} */}
+                        <div className="task-list mb-4">
+                            {taskList}
                         </div>
                     </Col>
                     <Col className="center">

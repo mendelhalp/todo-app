@@ -17,10 +17,10 @@
     width: 380px;
 }
 
-.p-todo .list{
-    border: 1px solid black;
+.p-todo .task-list{
     width: 350px;
-    min-height: 50px;
+    text-align: left;
+    font-size: 20px;
 }
 
 .p-todo span{
