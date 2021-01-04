@@ -6,3 +6,13 @@
     color: hsl(0, 0%, 73%);
     text-decoration: hsl(0, 0%, 73%) line-through 2px;
 }
+
+.c-task-item span{
+    color:red;
+    display: none;
+}
+
+.c-task-item:hover span{
+    display: initial;
+    cursor: pointer;
+}
