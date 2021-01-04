@@ -26,13 +26,13 @@ const TaskItem = (props) => {
                 </div>
                 <span onClick={() => isChecked ? handleDeleteItem(index) : setShowAlert(true)}>X</span>
                 <Modal show={showAlert} onHide={() => setShowAlert(false)} backdrop="static" keyboard={false}>
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title>Active Task!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>You are trying to delete an active task</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowAlert(false)}>Cancel</Button>
-                        <Button variant="primary" onClick={() => {handleDeleteItem(index); setShowAlert(false)}}>Delete anyway</Button>
+                        <Button variant="primary" onClick={() => { handleDeleteItem(index); setShowAlert(false) }}>Delete anyway</Button>
                     </Modal.Footer>
                 </Modal>
             </Row>
