@@ -20,15 +20,27 @@ const ToDoPage = () => {
         }
     }
 
-    // const setChecked = () => {
-
-    // }
+    const setChecked = (itemIndex) => {
+        let newTasks = tasks.map((task, index) => new TaskModel(task.text, (itemIndex === index) ? !task.isChecked : task.isChecked));
+        localStorage.tasks = JSON.stringify(newTasks);
+        setTasks(newTasks);
+    }
 
     let taskList;
     if (tasks) {
         taskList = tasks.map((task, index) =>
-            <TaskItem key={index} text={task.text} isChecked={task.isChecked} />
+            <TaskItem key={index} index={index} text={task.text} isChecked={task.isChecked} onSelect={() => setChecked(index)} />
         )
+    }
+
+    const itemsLeft = () => {
+        let left = 0;
+        for (let i = 0; i < tasks.length; i++) {
+            if (!tasks[i].isChecked) {
+                left++
+            }
+        }
+        return left;
     }
 
 
@@ -50,7 +62,7 @@ const ToDoPage = () => {
                     </Col>
                     <Col className="center">
                         <div className="between">
-                            <span>x items left</span>
+                            <span>{itemsLeft()} items left</span>
                             <ToggleButtonGroup name="select-filter">
                                 <Button className="m-1" variant="light">All</Button>
                                 <Button className="m-1" variant="light">Active</Button>
