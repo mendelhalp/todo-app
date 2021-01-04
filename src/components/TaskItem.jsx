@@ -1,6 +1,14 @@
 import { Row } from 'react-bootstrap';
 import './TaskItem.css';
 
+//this component render a ToDo item
+//props:
+//text - string - the title of the task (e.g. buy pills)
+//isChacked - boolean - is the task marked as checked
+//onSelect - function - function that change the isChecked value in the tasks array and rerender the item
+//handleDeleteItem - function - function that delete this item from the tasks array
+//index - number - the index of the item in the tasks array
+
 const TaskItem = (props) => {
     const { text, isChecked, onSelect, handleDeleteItem, index } = props;
 
