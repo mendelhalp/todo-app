@@ -5,20 +5,27 @@ import TaskModel from "../model/TaskModel";
 import isEnterPressed from "../utils/utils";
 
 const ToDoPage = () => {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(localStorage.tasks ? JSON.parse(localStorage.tasks) : []);
     const [taskText, setTaskText] = useState('');
     const [filterType, setFilterType] = useState([]);
 
     const addTask = (event) => {
-        if (isEnterPressed(event) && event.target.value){
-        const newTask = new TaskModel(event.target.value);
-        const newTasks = tasks.concat(newTask);
-        localStorage.tasks = JSON.stringify(newTasks);
-        setTasks(newTasks);
-        setTaskText('');
+        if (isEnterPressed(event) && event.target.value) {
+            const newTask = new TaskModel(event.target.value);
+            const newTasks = tasks.concat(newTask);
+            localStorage.tasks = JSON.stringify(newTasks);
+            setTasks(newTasks);
+            setTaskText('');
         }
     }
 
+    const taskList = () => {
+        if (tasks) {
+            tasks.map(task => {
+                // <TaskItem text={task.text} isChecked={task.isChecked}/>
+            })
+        }
+    }
 
     return (
         <div className="p-todo">
@@ -33,7 +40,7 @@ const ToDoPage = () => {
                     </Col>
                     <Col className="center">
                         <div className="list">
-                            {/* {list} */}
+                            {/* {taskList} */}
                         </div>
                     </Col>
                     <Col className="center">

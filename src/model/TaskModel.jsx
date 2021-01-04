@@ -6,7 +6,7 @@ class TaskModel extends React.Component {
     constructor(text, isChecked){
         super();
         this.text = text;
-        this.isChecked = isChecked;
+        this.isChecked = false;
     }
 }
 
