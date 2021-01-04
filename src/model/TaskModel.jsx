@@ -1,9 +1,13 @@
-class Task extends React.Component {
+import React from 'react';
+
+
+class TaskModel extends React.Component {
 
     constructor(text, isChecked){
+        super();
         this.text = text;
         this.isChecked = isChecked;
     }
 }
 
-export default Task;
+export default TaskModel;

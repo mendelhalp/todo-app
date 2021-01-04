@@ -1,7 +1,23 @@
+import { useState } from 'react';
 import { Button, ButtonGroup, Col, Container, Row, ToggleButtonGroup } from 'react-bootstrap';
 import './ToDoPage.css';
+import TaskModel from "../model/TaskModel";
+import isEnterPressed from "../utils/utils";
 
 const ToDoPage = () => {
+    const [tasks, setTasks] = useState([]);
+    const [taskText, setTaskText] = useState('');
+    const [filterType, setFilterType] = useState([]);
+
+    const addTask = (event) => {
+        if (isEnterPressed(event) && event.target.value){
+        const newTask = new TaskModel(event.target.value);
+        const newTasks = tasks.concat(newTask);
+        localStorage.tasks = JSON.stringify(newTasks);
+        setTasks(newTasks);
+        setTaskText('');
+        }
+    }
 
 
     return (
@@ -12,7 +28,8 @@ const ToDoPage = () => {
                         <h1>Todos</h1>
                     </Col>
                     <Col className="center mb-4">
-                        <input className="text-center" type="text" placeholder="What's next?" />
+                        <input value={taskText} className="text-center" type="text" placeholder="What's next?"
+                            onChange={e => setTaskText(e.target.value)} onKeyPress={addTask} />
                     </Col>
                     <Col className="center">
                         <div className="list">
