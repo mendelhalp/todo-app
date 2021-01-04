@@ -2,7 +2,7 @@ import { Row } from 'react-bootstrap';
 import './TaskItem.css';
 
 const TaskItem = (props) => {
-    const { text, isChecked, onSelect, index } = props;
+    const { text, isChecked, onSelect, handleDeleteItem, index } = props;
 
 
     return (
@@ -12,7 +12,7 @@ const TaskItem = (props) => {
                     <input id={'item' + index} type="checkbox" checked={isChecked} onChange={onSelect} className="mr-2" />
                     <label className={isChecked ? "checked" : ""} htmlFor={'item' + index}>{text}</label>
                 </div>
-                <span>X</span>
+                <span onClick={() => handleDeleteItem(index)}>X</span>
             </Row>
         </div>
     )

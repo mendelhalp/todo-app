@@ -21,7 +21,15 @@ const ToDoPage = () => {
     }
 
     const setChecked = (itemIndex) => {
-        let newTasks = tasks.map((task, index) => new TaskModel(task.text, (itemIndex === index) ? !task.isChecked : task.isChecked));
+        const newTasks = tasks.map((task, index) => new TaskModel(task.text, (itemIndex === index) ? !task.isChecked : task.isChecked));
+        localStorage.tasks = JSON.stringify(newTasks);
+        setTasks(newTasks);
+    }
+
+    const deleteItem = (itemIndex) => {
+        const newTasks = [...tasks];
+        newTasks.splice(itemIndex,1);
+        // tasks.filter(item => item !== itemIndex);
         localStorage.tasks = JSON.stringify(newTasks);
         setTasks(newTasks);
     }
@@ -29,7 +37,8 @@ const ToDoPage = () => {
     let taskList;
     if (tasks) {
         taskList = tasks.map((task, index) =>
-            <TaskItem key={index} index={index} text={task.text} isChecked={task.isChecked} onSelect={() => setChecked(index)} />
+            <TaskItem key={index} index={index} text={task.text} isChecked={task.isChecked}
+                onSelect={() => setChecked(index)} handleDeleteItem={(index) => deleteItem(index)} />
         )
     }
 
