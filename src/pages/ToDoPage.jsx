@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, ButtonGroup, Col, Container, Row, ToggleButtonGroup } from 'react-bootstrap';
+import { Button, Col, Container, Row, ToggleButtonGroup } from 'react-bootstrap';
 import './ToDoPage.css';
 import TaskModel from "../model/TaskModel";
 import isEnterPressed from "../utils/utils";
@@ -8,7 +8,7 @@ import TaskItem from '../components/TaskItem';
 const ToDoPage = () => {
     const [tasks, setTasks] = useState(localStorage.tasks ? JSON.parse(localStorage.tasks) : []);
     const [taskText, setTaskText] = useState('');
-    const [filterType, setFilterType] = useState([]);
+    const [filterType, setFilterType] = useState(['all']);
 
     const addTask = (event) => {
         if (isEnterPressed(event) && event.target.value) {
