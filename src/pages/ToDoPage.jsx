@@ -8,7 +8,7 @@ import TaskItem from '../components/TaskItem';
 const ToDoPage = () => {
     const [tasks, setTasks] = useState(localStorage.tasks ? JSON.parse(localStorage.tasks) : []);
     const [taskText, setTaskText] = useState('');
-    const [filterType, setFilterType] = useState(['all']);
+    const [filterType, setFilterType] = useState('All');
 
     const addTask = (event) => {
         if (isEnterPressed(event) && event.target.value) {
@@ -73,9 +73,9 @@ const ToDoPage = () => {
                         <div className="between">
                             <span>{itemsLeft()} items left</span>
                             <ToggleButtonGroup name="select-filter">
-                                <Button className="m-1" variant="light">All</Button>
-                                <Button className="m-1" variant="light">Active</Button>
-                                <Button className="m-1" variant="light">Complited</Button>
+                                <Button className="m-1" variant="light" active={(filterType === 'All') ? true : false}>All</Button>
+                                <Button className="m-1" variant="light" active={(filterType === 'Active') ? true : false}>Active</Button>
+                                <Button className="m-1" variant="light" active={(filterType === 'Complited') ? true : false}>Complited</Button>
                             </ToggleButtonGroup>
                         </div>
                     </Col>
