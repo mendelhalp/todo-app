@@ -7,7 +7,7 @@ const TaskItem = (props) => {
     return(
         <div className="c-task-item">
             <input id={'item' + index} type="checkbox" checked={isChecked} onChange={onSelect} className="mr-2"/>
-            <label htmlFor={'item' + index}>{text}</label>
+            <label className={isChecked ? "checked" : ""} htmlFor={'item' + index}>{text}</label>
         </div>
     )
 }

@@ -1,3 +1,8 @@
 .c-task-item:not(:last-of-type){
     border-bottom: 1px solid hsl(0, 0%, 73%);
 }
+
+.c-task-item .checked{
+    color: hsl(0, 0%, 73%);
+    text-decoration: hsl(0, 0%, 73%) line-through 2px;
+}
