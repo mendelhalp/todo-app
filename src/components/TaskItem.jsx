@@ -1,13 +1,13 @@
 import './TaskItem.css';
 
 const TaskItem = (props) => {
-    const{text, isChecked, key} = props;
+    const{text, isChecked,onSelect, index} = props;
 
 
     return(
         <div className="c-task-item">
-            <input type="checkbox" checked={isChecked} className="mr-2"/>
-            <label htmlFor={'item' + key}>{text}</label>
+            <input id={'item' + index} type="checkbox" checked={isChecked} onChange={onSelect} className="mr-2"/>
+            <label htmlFor={'item' + index}>{text}</label>
         </div>
     )
 }
